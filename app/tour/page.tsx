@@ -38,24 +38,93 @@ const seasons = [
   },
 ]
 
-// Pixel art component for Season 2 logo
+// Pixel art component for Season 2 logo - Enhanced game-style
 function PixelLogo() {
   return (
     <div className="relative w-20 h-20">
-      {/* Outer green rings */}
-      <div className="absolute inset-0 rounded-full border-4 border-[#7ED321] opacity-80"></div>
-      <div className="absolute inset-1 rounded-full border-2 border-[#7ED321] opacity-60"></div>
+      {/* Pixelated border effect */}
+      <div className="absolute inset-0">
+        {/* Create pixelated border using small squares */}
+        <div className="absolute top-0 left-2 w-16 h-1 bg-[#7ED321]"></div>
+        <div className="absolute top-1 left-1 w-18 h-1 bg-[#7ED321]"></div>
+        <div className="absolute top-2 left-0 w-20 h-1 bg-[#7ED321]"></div>
 
-      {/* Pixel art center */}
-      <div className="absolute inset-4 bg-[#7ED321] rounded-full flex items-center justify-center">
-        <div className="text-black font-bold text-xl font-mono">P</div>
+        <div className="absolute bottom-0 left-2 w-16 h-1 bg-[#7ED321]"></div>
+        <div className="absolute bottom-1 left-1 w-18 h-1 bg-[#7ED321]"></div>
+        <div className="absolute bottom-2 left-0 w-20 h-1 bg-[#7ED321]"></div>
+
+        <div className="absolute left-0 top-2 w-1 h-16 bg-[#7ED321]"></div>
+        <div className="absolute left-1 top-1 w-1 h-18 bg-[#7ED321]"></div>
+        <div className="absolute left-2 top-0 w-1 h-20 bg-[#7ED321]"></div>
+
+        <div className="absolute right-0 top-2 w-1 h-16 bg-[#7ED321]"></div>
+        <div className="absolute right-1 top-1 w-1 h-18 bg-[#7ED321]"></div>
+        <div className="absolute right-2 top-0 w-1 h-20 bg-[#7ED321]"></div>
       </div>
 
-      {/* Pixel decorations around */}
-      <div className="absolute -top-1 left-1/2 w-2 h-2 bg-[#7ED321] transform -translate-x-1/2"></div>
-      <div className="absolute -bottom-1 left-1/2 w-2 h-2 bg-[#7ED321] transform -translate-x-1/2"></div>
-      <div className="absolute top-1/2 -left-1 w-2 h-2 bg-[#7ED321] transform -translate-y-1/2"></div>
-      <div className="absolute top-1/2 -right-1 w-2 h-2 bg-[#7ED321] transform -translate-y-1/2"></div>
+      {/* Inner pixel art design */}
+      <div className="absolute inset-3 bg-gray-900">
+        {/* Create P letter with pixels */}
+        <div className="grid grid-cols-8 grid-rows-8 gap-0 w-full h-full">
+          {/* P letter pattern using individual pixels */}
+          {Array.from({ length: 64 }).map((_, i) => {
+            const row = Math.floor(i / 8)
+            const col = i % 8
+            // Define P letter pattern
+            const isPLetter =
+              (col === 0 && row >= 0 && row <= 7) || // Left vertical line
+              (col === 1 && (row === 0 || row === 3)) || // Top and middle horizontal
+              (col === 2 && (row === 0 || row === 3)) || // Top and middle horizontal
+              (col === 3 && (row === 0 || row === 1 || row === 2 || row === 3)) // Right side of P
+            return <div key={i} className={`w-full h-full ${isPLetter ? "bg-[#7ED321]" : "bg-transparent"}`} />
+          })}
+        </div>
+      </div>
+
+      {/* Glowing effect pixels */}
+      <div className="absolute -top-1 left-1/2 w-1 h-1 bg-[#7ED321] animate-pulse transform -translate-x-1/2"></div>
+      <div className="absolute -bottom-1 left-1/2 w-1 h-1 bg-[#7ED321] animate-pulse transform -translate-x-1/2"></div>
+      <div className="absolute top-1/2 -left-1 w-1 h-1 bg-[#7ED321] animate-pulse transform -translate-y-1/2"></div>
+      <div className="absolute top-1/2 -right-1 w-1 h-1 bg-[#7ED321] animate-pulse transform -translate-y-1/2"></div>
+    </div>
+  )
+}
+
+// Pixel art question mark for inactive seasons
+function PixelQuestionMark() {
+  return (
+    <div className="relative w-20 h-20">
+      {/* Pixelated border */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-2 w-16 h-1 bg-gray-600"></div>
+        <div className="absolute top-1 left-1 w-18 h-1 bg-gray-600"></div>
+        <div className="absolute bottom-0 left-2 w-16 h-1 bg-gray-600"></div>
+        <div className="absolute bottom-1 left-1 w-18 h-1 bg-gray-600"></div>
+        <div className="absolute left-0 top-2 w-1 h-16 bg-gray-600"></div>
+        <div className="absolute left-1 top-1 w-1 h-18 bg-gray-600"></div>
+        <div className="absolute right-0 top-2 w-1 h-16 bg-gray-600"></div>
+        <div className="absolute right-1 top-1 w-1 h-18 bg-gray-600"></div>
+      </div>
+
+      {/* Question mark pixel art */}
+      <div className="absolute inset-3 bg-gray-800">
+        <div className="grid grid-cols-6 grid-rows-8 gap-0 w-full h-full">
+          {Array.from({ length: 48 }).map((_, i) => {
+            const row = Math.floor(i / 6)
+            const col = i % 6
+            // Question mark pattern
+            const isQuestionMark =
+              (row === 0 && col >= 1 && col <= 4) || // Top horizontal
+              (row === 1 && (col === 0 || col === 5)) || // Top sides
+              (row === 2 && col === 5) || // Right side
+              (row === 3 && col === 4) || // Middle right
+              (row === 4 && col === 3) || // Middle
+              (row === 5 && col === 2) || // Lower middle
+              (row === 7 && col === 2) // Dot
+            return <div key={i} className={`w-full h-full ${isQuestionMark ? "bg-gray-500" : "bg-transparent"}`} />
+          })}
+        </div>
+      </div>
     </div>
   )
 }
@@ -229,13 +298,19 @@ export default function TourPage() {
                     season.status === "active" ? "border-[#7ED321]" : "border-gray-700"
                   }`}
                 >
-                  {/* Pixel decorations for active season */}
                   {season.status === "active" && (
-                    <div className="absolute inset-0 opacity-10">
-                      {Array.from({ length: 20 }).map((_, i) => (
+                    <div className="absolute inset-0 opacity-20">
+                      {/* Pixel corner decorations */}
+                      <div className="absolute top-2 left-2 w-2 h-2 bg-[#7ED321]"></div>
+                      <div className="absolute top-2 right-2 w-2 h-2 bg-[#7ED321]"></div>
+                      <div className="absolute bottom-2 left-2 w-2 h-2 bg-[#7ED321]"></div>
+                      <div className="absolute bottom-2 right-2 w-2 h-2 bg-[#7ED321]"></div>
+
+                      {/* Random pixel scatter */}
+                      {Array.from({ length: 15 }).map((_, i) => (
                         <div
                           key={i}
-                          className="absolute w-2 h-2 bg-[#7ED321]"
+                          className="absolute w-1 h-1 bg-[#7ED321]"
                           style={{
                             left: `${Math.random() * 100}%`,
                             top: `${Math.random() * 100}%`,
@@ -247,13 +322,7 @@ export default function TourPage() {
 
                   <div className="relative z-10">
                     <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-                      {season.status === "active" ? (
-                        <PixelLogo />
-                      ) : (
-                        <div className="w-20 h-20 rounded-full bg-gray-800 flex items-center justify-center">
-                          <div className="text-gray-500 text-2xl font-mono">?</div>
-                        </div>
-                      )}
+                      {season.status === "active" ? <PixelLogo /> : <PixelQuestionMark />}
                     </div>
 
                     <h3
