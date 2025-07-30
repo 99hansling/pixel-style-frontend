@@ -4,7 +4,7 @@ import { MissionSection } from "@/components/mission-section"
 import { MultichainSection } from "@/components/multichain-section"
 import { TokenomicsSection } from "@/components/tokenomics-section"
 import { Footer } from "@/components/footer"
-import { PixelTransition } from "@/components/pixel-transition"
+import { PixelDivider } from "@/components/pixel-divider"
 
 export default function Home() {
   return (
@@ -16,32 +16,40 @@ export default function Home() {
         <HeroSection />
       </section>
 
-      {/* Pixel transition from black to gray */}
-      <PixelTransition fromBg="bg-black" toBg="bg-gray-900" />
+      {/* Pixel divider from black to dark blue */}
+      <div className="bg-slate-800 relative">
+        <PixelDivider variant="top" />
+      </div>
 
-      {/* Mission Section - Dark Gray Background */}
-      <section className="bg-gray-900">
+      {/* Mission Section - Dark Blue/Gray Background */}
+      <section className="bg-slate-800">
         <MissionSection />
       </section>
 
-      {/* Pixel transition from gray to black */}
-      <PixelTransition fromBg="bg-gray-900" toBg="bg-black" />
+      {/* Pixel divider from dark blue to black */}
+      <div className="bg-black relative">
+        <PixelDivider variant="top" />
+      </div>
 
       {/* Multichain Section - Black Background */}
       <section className="bg-black">
         <MultichainSection />
       </section>
 
-      {/* Pixel transition from black to gray */}
-      <PixelTransition fromBg="bg-black" toBg="bg-gray-900" />
+      {/* Pixel divider from black to dark blue */}
+      <div className="bg-slate-800 relative">
+        <PixelDivider variant="top" />
+      </div>
 
-      {/* Tokenomics Section - Dark Gray Background */}
-      <section className="bg-gray-900">
+      {/* Tokenomics Section - Dark Blue/Gray Background */}
+      <section className="bg-slate-800">
         <TokenomicsSection />
       </section>
 
-      {/* Pixel transition to footer */}
-      <PixelTransition fromBg="bg-gray-900" toBg="bg-[#7ED321]" />
+      {/* Pixel divider to footer */}
+      <div className="bg-[#7ED321] relative">
+        <PixelDivider variant="top" />
+      </div>
 
       {/* Footer */}
       <Footer />
