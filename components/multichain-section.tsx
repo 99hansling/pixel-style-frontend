@@ -61,7 +61,7 @@ export function MultichainSection() {
         </div>
 
         {/* Future Vision Section */}
-        <div className="border border-gray-700 rounded-lg p-8 max-w-4xl mx-auto relative bg-gray-800/50">
+        <div className="border border-gray-700 rounded-lg p-8 max-w-4xl mx-auto relative">
           {/* Animated Pixel Eye */}
           <div className="absolute right-8 top-8">
             <div className="grid grid-cols-8 grid-rows-6 gap-1 w-16 h-12">
