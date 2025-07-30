@@ -6,68 +6,37 @@ interface PixelDividerProps {
 }
 
 export function PixelDivider({ variant = "bottom", className = "" }: PixelDividerProps) {
-  // Generate chunky pixel pattern like the original
-  const generatePixelBlocks = () => {
-    const blocks = []
-    const numBlocks = 60 // Number of pixel blocks across the width
-
-    for (let i = 0; i < numBlocks; i++) {
-      // Create random heights for pixel blocks - more dramatic variation
-      const heights = [8, 12, 16, 20, 24, 28, 32, 36, 40]
-      const randomHeight = heights[Math.floor(Math.random() * heights.length)]
-
-      // Occasionally skip blocks for more irregular look
-      const shouldShow = Math.random() > 0.1
-
-      blocks.push({
-        height: shouldShow ? randomHeight : 0,
-        width: Math.random() > 0.7 ? 24 : 16, // Vary width occasionally
-      })
-    }
-
-    return blocks
-  }
-
-  const pixelBlocks = generatePixelBlocks()
+  // SVG 锯齿状图案
+  const zigzagPath =
+    "M0,20 L8,20 L8,12 L16,12 L16,20 L24,20 L24,8 L32,8 L32,20 L40,20 L40,16 L48,16 L48,20 L56,20 L56,4 L64,4 L64,20 L72,20 L72,12 L80,12 L80,20 L88,20 L88,8 L96,8 L96,20 L104,20 L104,16 L112,16 L112,20 L120,20"
 
   if (variant === "bottom") {
     return (
-      <div className={`relative w-full h-10 overflow-hidden ${className}`}>
-        <div className="absolute bottom-0 left-0 w-full flex justify-center">
-          <div className="flex items-end">
-            {pixelBlocks.map((block, i) => (
-              <div
-                key={i}
-                className="bg-black"
-                style={{
-                  height: `${block.height}px`,
-                  width: `${block.width}px`,
-                }}
-              />
-            ))}
-          </div>
-        </div>
+      <div className={`relative w-full h-5 overflow-hidden ${className}`}>
+        <svg
+          className="absolute bottom-0 left-0 w-full h-full"
+          viewBox="0 0 120 20"
+          preserveAspectRatio="none"
+          fill="currentColor"
+        >
+          <path d={zigzagPath} className="fill-black" />
+        </svg>
       </div>
     )
   }
 
-  // Top variant
+  // Top variant - 翻转锯齿图案
   return (
-    <div className={`relative w-full h-10 overflow-hidden ${className}`}>
-      <div className="absolute top-0 left-0 w-full flex justify-center">
-        <div className="flex items-start">
-          {pixelBlocks.map((block, i) => (
-            <div
-              key={i}
-              className="bg-black"
-              style={{
-                height: `${block.height}px`,
-                width: `${block.width}px`,
-              }}
-            />
-          ))}
-        </div>
-      </div>
+    <div className={`relative w-full h-5 overflow-hidden ${className}`}>
+      <svg
+        className="absolute top-0 left-0 w-full h-full"
+        viewBox="0 0 120 20"
+        preserveAspectRatio="none"
+        fill="currentColor"
+        style={{ transform: "scaleY(-1)" }}
+      >
+        <path d={zigzagPath} className="fill-black" />
+      </svg>
     </div>
   )
 }
