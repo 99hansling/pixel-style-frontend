@@ -11,7 +11,7 @@ const tokenomicsData = [
 export function TokenomicsSection() {
   return (
     <section className="py-20 px-4 relative overflow-hidden">
-      {/* Pixel decorations */}
+      {/* Pixel decorations - adjusted for pure gray background */}
       <div className="absolute inset-0">
         {Array.from({ length: 60 }).map((_, i) => (
           <div

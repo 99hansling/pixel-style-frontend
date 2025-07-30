@@ -3,12 +3,12 @@
 export function MissionSection() {
   return (
     <section className="py-20 px-4 relative overflow-hidden">
-      {/* Pixel decorations - adjusted for darker background */}
+      {/* Pixel decorations - adjusted for pure gray background */}
       <div className="absolute inset-0">
         {Array.from({ length: 30 }).map((_, i) => (
           <div
             key={i}
-            className="absolute w-6 h-6 bg-slate-700"
+            className="absolute w-6 h-6 bg-gray-800"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -41,7 +41,7 @@ export function MissionSection() {
                 const col = i % 8
 
                 // Create a more complex pixel pattern
-                let pixelClass = "bg-slate-700"
+                let pixelClass = "bg-gray-800"
 
                 // Green pixels (forming a pattern)
                 if (row >= 2 && row <= 5 && col >= 2 && col <= 3) {
@@ -53,7 +53,7 @@ export function MissionSection() {
                 }
                 // Some random accent pixels
                 else if (Math.random() > 0.85) {
-                  pixelClass = "bg-slate-600"
+                  pixelClass = "bg-gray-700"
                 }
 
                 return <div key={i} className={`w-8 h-8 ${pixelClass}`} />

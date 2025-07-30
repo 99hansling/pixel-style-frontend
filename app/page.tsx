@@ -16,17 +16,17 @@ export default function Home() {
         <HeroSection />
       </section>
 
-      {/* Pixel divider from black to dark blue */}
-      <div className="bg-slate-800 relative">
+      {/* Pixel divider from black to gray */}
+      <div className="bg-gray-900 relative">
         <PixelDivider variant="top" />
       </div>
 
-      {/* Mission Section - Dark Blue/Gray Background */}
-      <section className="bg-slate-800">
+      {/* Mission Section - Pure Gray Background */}
+      <section className="bg-gray-900">
         <MissionSection />
       </section>
 
-      {/* Pixel divider from dark blue to black */}
+      {/* Pixel divider from gray to black */}
       <div className="bg-black relative">
         <PixelDivider variant="top" />
       </div>
@@ -36,17 +36,17 @@ export default function Home() {
         <MultichainSection />
       </section>
 
-      {/* Pixel divider from black to dark blue */}
-      <div className="bg-slate-800 relative">
+      {/* Pixel divider from black to gray */}
+      <div className="bg-gray-900 relative">
         <PixelDivider variant="top" />
       </div>
 
-      {/* Tokenomics Section - Dark Blue/Gray Background */}
-      <section className="bg-slate-800">
+      {/* Tokenomics Section - Pure Gray Background */}
+      <section className="bg-gray-900">
         <TokenomicsSection />
       </section>
 
-      {/* Pixel divider to footer */}
+      {/* Pixel divider from gray to green footer */}
       <div className="bg-[#7ED321] relative">
         <PixelDivider variant="top" />
       </div>
