@@ -1,0 +1,307 @@
+"use client"
+
+import { Navigation } from "@/components/navigation"
+import { Button } from "@/components/ui/button"
+
+const sponsors = [
+  { name: "Micro3", icon: "🏁", color: "bg-orange-500" },
+  { name: "DerpDEXcom", icon: "👤", color: "bg-purple-600" },
+  { name: "ZkBaby", icon: "👶", color: "bg-blue-500" },
+  { name: "ZNS Connect", icon: "⚡", color: "bg-yellow-500" },
+  { name: "More", icon: "B", color: "bg-blue-600" },
+]
+
+const seasons = [
+  {
+    number: 1,
+    title: "Season 1",
+    description: "Introducing PixelSwap and Exploring Our Inaugural Partners in the Tour de DeXcellence",
+    status: "completed",
+  },
+  {
+    number: 2,
+    title: "Season 2",
+    description: "Exploring Pixel Soul Pets",
+    status: "active",
+  },
+  {
+    number: 3,
+    title: "Season 3",
+    description: "Coming soon",
+    status: "upcoming",
+  },
+  {
+    number: 4,
+    title: "Season 4",
+    description: "Coming soon",
+    status: "upcoming",
+  },
+]
+
+// Pixel art component for Season 2 logo
+function PixelLogo() {
+  return (
+    <div className="relative w-20 h-20">
+      {/* Outer green rings */}
+      <div className="absolute inset-0 rounded-full border-4 border-[#7ED321] opacity-80"></div>
+      <div className="absolute inset-1 rounded-full border-2 border-[#7ED321] opacity-60"></div>
+
+      {/* Pixel art center */}
+      <div className="absolute inset-4 bg-[#7ED321] rounded-full flex items-center justify-center">
+        <div className="text-black font-bold text-xl font-mono">P</div>
+      </div>
+
+      {/* Pixel decorations around */}
+      <div className="absolute -top-1 left-1/2 w-2 h-2 bg-[#7ED321] transform -translate-x-1/2"></div>
+      <div className="absolute -bottom-1 left-1/2 w-2 h-2 bg-[#7ED321] transform -translate-x-1/2"></div>
+      <div className="absolute top-1/2 -left-1 w-2 h-2 bg-[#7ED321] transform -translate-y-1/2"></div>
+      <div className="absolute top-1/2 -right-1 w-2 h-2 bg-[#7ED321] transform -translate-y-1/2"></div>
+    </div>
+  )
+}
+
+// Wireframe grid background component
+function WireframeBackground() {
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      <svg className="w-full h-full" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Perspective grid lines */}
+        <defs>
+          <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#7ED321" strokeWidth="0.5" opacity="0.3" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        {/* Perspective lines */}
+        {Array.from({ length: 10 }).map((_, i) => (
+          <g key={i}>
+            <line
+              x1={i * 40}
+              y1="0"
+              x2={200 + (i - 5) * 20}
+              y2="300"
+              stroke="#7ED321"
+              strokeWidth="0.5"
+              opacity="0.4"
+            />
+            <line
+              x1="0"
+              y1={i * 30}
+              x2="400"
+              y2={150 + (i - 5) * 15}
+              stroke="#7ED321"
+              strokeWidth="0.5"
+              opacity="0.4"
+            />
+          </g>
+        ))}
+
+        {/* Wireframe rocket/spaceship */}
+        <g transform="translate(280, 180)">
+          <path
+            d="M0,0 L20,10 L15,20 L25,25 L20,35 L10,30 L5,40 L-5,35 L-10,25 L0,20 Z"
+            fill="none"
+            stroke="#7ED321"
+            strokeWidth="1"
+            opacity="0.8"
+          />
+          <path d="M-15,15 L-25,20 L-20,25 L-10,20 Z" fill="none" stroke="#7ED321" strokeWidth="1" opacity="0.6" />
+        </g>
+
+        {/* Additional wireframe elements */}
+        <g transform="translate(320, 220)">
+          <path d="M0,0 L10,5 L8,15 L-2,10 Z" fill="none" stroke="#7ED321" strokeWidth="1" opacity="0.6" />
+        </g>
+      </svg>
+    </div>
+  )
+}
+
+export default function TourPage() {
+  return (
+    <div className="min-h-screen bg-black">
+      <Navigation />
+
+      <main className="pt-16 px-4 py-12">
+        {/* Pixel decorations */}
+        <div className="absolute inset-0 overflow-hidden">
+          {Array.from({ length: 50 }).map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-4 h-4 bg-gray-800"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                opacity: Math.random() * 0.3 + 0.1,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Hero Section */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-mono">
+                Tour de DeXcellence -
+                <br />
+                Powered by PixelSwap
+              </h1>
+
+              <div className="text-6xl md:text-8xl font-bold text-[#7ED321] mb-8 font-mono">$10,000</div>
+
+              <p className="text-gray-300 text-lg mb-8 font-mono leading-relaxed">
+                Tour de DeXcellence: A DeX-focused campaign highlighting partner collaboration, offering users a journey
+                through DeFi.
+                <br />
+                <br />
+                We're hosting an event in Q4 2023, inviting partners to join us in enhancing user access and brand
+                awareness.
+              </p>
+
+              <div className="flex gap-4">
+                <Button className="bg-gray-800 text-white border border-gray-600 hover:bg-gray-700 font-mono">
+                  Join now
+                </Button>
+                <Button
+                  variant="outline"
+                  className="border-gray-600 text-gray-400 hover:text-white font-mono bg-transparent"
+                >
+                  Discord
+                </Button>
+              </div>
+            </div>
+
+            {/* Wireframe Graphics with Grid Background */}
+            <div className="relative">
+              <div className="border-2 border-[#7ED321] rounded-lg p-8 bg-black/80 relative overflow-hidden">
+                {/* Wireframe background */}
+                <WireframeBackground />
+
+                {/* Content overlay */}
+                <div className="relative z-10">
+                  <div className="text-center mb-4">
+                    <div className="bg-[#7ED321] text-black px-4 py-2 font-mono text-sm inline-block">PIXELSWAP</div>
+                  </div>
+                  <div className="border border-[#7ED321] p-4 mb-4">
+                    <div className="text-[#7ED321] font-mono text-center text-xl font-bold">TOUR DE DEXCELLENCE</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* How it works */}
+          <div className="mb-20">
+            <h2 className="text-4xl font-bold text-white mb-8 font-mono">How it works?</h2>
+            <p className="text-gray-300 text-lg mb-12 font-mono max-w-3xl">
+              Complete tasks in each season to unlock rewards, starting from Season 1 on partnered platforms like Galxe,
+              Taskon, QuestN, Zealy and SoQuest.
+            </p>
+
+            {/* Task Flow */}
+            <div className="flex items-center justify-center space-x-8 mb-12">
+              <div className="flex items-center space-x-2 bg-gray-800 px-4 py-2 rounded-lg">
+                <div className="w-6 h-6 bg-yellow-500 rounded"></div>
+                <div className="w-6 h-6 bg-red-500 rounded"></div>
+                <div className="w-6 h-6 bg-blue-500 rounded"></div>
+                <div className="w-6 h-6 bg-green-500 rounded"></div>
+                <div className="w-6 h-6 bg-purple-500 rounded"></div>
+              </div>
+              <div className="text-gray-400 font-mono">→</div>
+              <div className="bg-[#7ED321] text-black px-6 py-3 rounded-lg font-mono font-bold text-xl">$10,000</div>
+              <div className="text-gray-400 font-mono">→</div>
+              <Button className="bg-gray-800 text-white border border-gray-600 hover:bg-gray-700 font-mono">
+                COMPLETE TASK
+              </Button>
+            </div>
+          </div>
+
+          {/* Seasons with Pixel Art */}
+          <div className="mb-20">
+            <h2 className="text-4xl font-bold text-white text-center mb-12 font-mono">Seasons Tour de DeXcellence</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {seasons.map((season) => (
+                <div
+                  key={season.number}
+                  className={`bg-gray-900 border rounded-lg p-6 text-center relative overflow-hidden ${
+                    season.status === "active" ? "border-[#7ED321]" : "border-gray-700"
+                  }`}
+                >
+                  {/* Pixel decorations for active season */}
+                  {season.status === "active" && (
+                    <div className="absolute inset-0 opacity-10">
+                      {Array.from({ length: 20 }).map((_, i) => (
+                        <div
+                          key={i}
+                          className="absolute w-2 h-2 bg-[#7ED321]"
+                          style={{
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                          }}
+                        />
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="relative z-10">
+                    <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                      {season.status === "active" ? (
+                        <PixelLogo />
+                      ) : (
+                        <div className="w-20 h-20 rounded-full bg-gray-800 flex items-center justify-center">
+                          <div className="text-gray-500 text-2xl font-mono">?</div>
+                        </div>
+                      )}
+                    </div>
+
+                    <h3
+                      className={`text-xl font-bold mb-2 font-mono ${
+                        season.status === "active" ? "text-white" : "text-gray-500"
+                      }`}
+                    >
+                      {season.title}
+                    </h3>
+
+                    <p
+                      className={`text-sm font-mono mb-4 ${season.status === "active" ? "text-gray-300" : "text-gray-600"}`}
+                    >
+                      {season.description}
+                    </p>
+
+                    {season.status === "active" && (
+                      <div className="mt-4">
+                        <div className="text-[#7ED321] font-mono text-2xl">▷</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Sponsored by */}
+          <div className="text-center">
+            <h2 className="text-4xl font-bold text-white mb-12 font-mono">Sponsored by</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+              {sponsors.map((sponsor, index) => (
+                <div
+                  key={index}
+                  className="bg-gray-900 border border-gray-700 rounded-lg p-4 hover:border-[#7ED321] transition-colors"
+                >
+                  <div
+                    className={`w-12 h-12 ${sponsor.color} rounded-lg flex items-center justify-center mx-auto mb-2`}
+                  >
+                    <div className="text-white font-bold font-mono">{sponsor.icon}</div>
+                  </div>
+                  <div className="text-white text-sm font-mono">{sponsor.name}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  )
+}
