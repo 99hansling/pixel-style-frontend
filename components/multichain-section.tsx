@@ -63,12 +63,65 @@ export function MultichainSection() {
 
         {/* Future Vision Section */}
         <div className="border border-gray-700 rounded-lg p-8 max-w-4xl mx-auto relative">
-          {/* Green pixel decorations */}
+          {/* Animated Pixel Eye */}
           <div className="absolute right-8 top-8">
-            <div className="grid grid-cols-4 gap-1">
-              {Array.from({ length: 16 }).map((_, i) => (
-                <div key={i} className={`w-3 h-3 ${Math.random() > 0.5 ? "bg-[#7ED321]" : "bg-transparent"}`} />
-              ))}
+            <div className="grid grid-cols-8 grid-rows-6 gap-1 w-16 h-12">
+              {Array.from({ length: 48 }).map((_, i) => {
+                const row = Math.floor(i / 8)
+                const col = i % 8
+
+                // Define eye pattern in three stages
+                const stage1Pattern = [
+                  // Stage 1: Eye outline (appears first)
+                  row === 1 && col >= 1 && col <= 6,
+                  row === 4 && col >= 1 && col <= 6,
+                  row === 2 && (col === 0 || col === 7),
+                  row === 3 && (col === 0 || col === 7),
+                ].some(Boolean)
+
+                const stage2Pattern = [
+                  // Stage 2: Eye white/iris area (appears second)
+                  row === 2 && col >= 1 && col <= 6,
+                  row === 3 && col >= 1 && col <= 6,
+                ].some(Boolean)
+
+                const stage3Pattern = [
+                  // Stage 3: Pupil (appears last)
+                  row === 2 && col >= 3 && col <= 4,
+                  row === 3 && col >= 3 && col <= 4,
+                ].some(Boolean)
+
+                // Determine animation properties
+                let animationDelay = "0s"
+                let shouldShow = false
+                let pixelColor = "bg-[#7ED321]"
+
+                if (stage1Pattern) {
+                  animationDelay = "0s"
+                  shouldShow = true
+                  pixelColor = "bg-[#7ED321]"
+                } else if (stage2Pattern) {
+                  animationDelay = "1s"
+                  shouldShow = true
+                  pixelColor = "bg-green-300"
+                } else if (stage3Pattern) {
+                  animationDelay = "2s"
+                  shouldShow = true
+                  pixelColor = "bg-gray-900"
+                }
+
+                if (!shouldShow) return <div key={i} className="w-2 h-2" />
+
+                return (
+                  <div
+                    key={i}
+                    className={`w-2 h-2 ${pixelColor} opacity-0`}
+                    style={{
+                      animation: `pixelFadeIn 0.8s ease-in-out ${animationDelay} forwards`,
+                    }}
+                  />
+                )
+              })}
             </div>
           </div>
 
@@ -92,6 +145,18 @@ export function MultichainSection() {
           </div>
         </div>
       </div>
+      <style jsx>{`
+        @keyframes pixelFadeIn {
+          from {
+            opacity: 0;
+            transform: scale(0.5);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+      `}</style>
     </section>
   )
 }
