@@ -3,22 +3,21 @@
 import { Button } from "@/components/ui/button"
 
 const blockchains = [
+  { name: "Arbitrum", icon: "🔷", color: "bg-blue-500" },
   { name: "Avalanche", icon: "🔺", color: "bg-red-500" },
   { name: "Bitcoin", icon: "₿", color: "bg-orange-500" },
   { name: "Ethereum", icon: "Ξ", color: "bg-gray-400" },
   { name: "Linea", icon: "⟡", color: "bg-gray-600" },
-  { name: "Optimism", icon: "🔴", color: "bg-red-600" },
-  { name: "Near", icon: "Ⓝ", color: "bg-green-500" },
   { name: "Solana", icon: "◎", color: "bg-purple-500" },
   { name: "Sui", icon: "💧", color: "bg-blue-400" },
   { name: "Sei", icon: "🌊", color: "bg-red-400" },
   { name: "Aptos", icon: "⬢", color: "bg-gray-500" },
-  { name: "Zetach", icon: "Z", color: "bg-green-400" },
+  { name: "Zetachain", icon: "Z", color: "bg-green-400" },
 ]
 
 export function MultichainSection() {
   return (
-    <section className="bg-black py-20 px-4 relative overflow-hidden">
+    <section className="py-20 px-4 relative overflow-hidden">
       {/* Pixel decorations */}
       <div className="absolute inset-0">
         {Array.from({ length: 40 }).map((_, i) => (
@@ -45,24 +44,24 @@ export function MultichainSection() {
         </p>
 
         {/* Blockchain Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-16 max-w-4xl mx-auto">
           {blockchains.map((blockchain, index) => (
             <div
               key={index}
-              className="bg-gray-900 border border-gray-700 rounded-lg p-4 hover:border-[#7ED321] transition-colors"
+              className="bg-gray-900 border border-gray-700 rounded-lg p-3 hover:border-[#7ED321] transition-colors"
             >
               <div
-                className={`w-8 h-8 ${blockchain.color} rounded-full flex items-center justify-center text-white font-bold mb-2 mx-auto`}
+                className={`w-6 h-6 ${blockchain.color} rounded-full flex items-center justify-center text-white font-bold text-xs mb-2 mx-auto`}
               >
                 {blockchain.icon}
               </div>
-              <div className="text-white text-sm font-mono">{blockchain.name}</div>
+              <div className="text-white text-xs font-mono">{blockchain.name}</div>
             </div>
           ))}
         </div>
 
         {/* Future Vision Section */}
-        <div className="border border-gray-700 rounded-lg p-8 max-w-4xl mx-auto relative">
+        <div className="border border-gray-700 rounded-lg p-8 max-w-4xl mx-auto relative bg-gray-800/50">
           {/* Animated Pixel Eye */}
           <div className="absolute right-8 top-8">
             <div className="grid grid-cols-8 grid-rows-6 gap-1 w-16 h-12">
@@ -70,28 +69,22 @@ export function MultichainSection() {
                 const row = Math.floor(i / 8)
                 const col = i % 8
 
-                // Define eye pattern in three stages
+                // Define eye pattern
                 const stage1Pattern = [
-                  // Stage 1: Eye outline (appears first)
                   row === 1 && col >= 1 && col <= 6,
                   row === 4 && col >= 1 && col <= 6,
                   row === 2 && (col === 0 || col === 7),
                   row === 3 && (col === 0 || col === 7),
                 ].some(Boolean)
 
-                const stage2Pattern = [
-                  // Stage 2: Eye white/iris area (appears second)
-                  row === 2 && col >= 1 && col <= 6,
-                  row === 3 && col >= 1 && col <= 6,
-                ].some(Boolean)
+                const stage2Pattern = [row === 2 && col >= 1 && col <= 6, row === 3 && col >= 1 && col <= 6].some(
+                  Boolean,
+                )
 
-                const stage3Pattern = [
-                  // Stage 3: Pupil (appears last)
-                  row === 2 && col >= 3 && col <= 4,
-                  row === 3 && col >= 3 && col <= 4,
-                ].some(Boolean)
+                const stage3Pattern = [row === 2 && col >= 3 && col <= 4, row === 3 && col >= 3 && col <= 4].some(
+                  Boolean,
+                )
 
-                // Determine animation properties
                 let animationDelay = "0s"
                 let shouldShow = false
                 let pixelColor = "bg-[#7ED321]"
@@ -115,7 +108,7 @@ export function MultichainSection() {
                 return (
                   <div
                     key={i}
-                    className={`w-2 h-2 ${pixelColor} opacity-0`}
+                    className={`w-2 h-2 ${pixelColor} opacity-0 animate-pulse`}
                     style={{
                       animation: `pixelFadeIn 0.8s ease-in-out ${animationDelay} forwards`,
                     }}
@@ -145,18 +138,6 @@ export function MultichainSection() {
           </div>
         </div>
       </div>
-      <style jsx>{`
-        @keyframes pixelFadeIn {
-          from {
-            opacity: 0;
-            transform: scale(0.5);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-      `}</style>
     </section>
   )
 }

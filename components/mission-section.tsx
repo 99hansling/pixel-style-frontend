@@ -2,7 +2,7 @@
 
 export function MissionSection() {
   return (
-    <section className="bg-black py-20 px-4 relative overflow-hidden">
+    <section className="py-20 px-4 relative overflow-hidden">
       {/* Pixel decorations */}
       <div className="absolute inset-0">
         {Array.from({ length: 30 }).map((_, i) => (

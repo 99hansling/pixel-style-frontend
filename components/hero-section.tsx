@@ -2,7 +2,7 @@
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen bg-black flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Pixel decorations */}
       <div className="absolute inset-0">
         {/* Scattered pixel squares */}

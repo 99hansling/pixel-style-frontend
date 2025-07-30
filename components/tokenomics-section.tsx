@@ -10,7 +10,7 @@ const tokenomicsData = [
 
 export function TokenomicsSection() {
   return (
-    <section className="bg-black py-20 px-4 relative overflow-hidden">
+    <section className="py-20 px-4 relative overflow-hidden">
       {/* Pixel decorations */}
       <div className="absolute inset-0">
         {Array.from({ length: 60 }).map((_, i) => (
@@ -60,7 +60,7 @@ export function TokenomicsSection() {
             <div className="relative w-80 h-80">
               {/* Outer ring with gradient */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#7ED321] via-blue-500 to-pink-500 p-2">
-                <div className="w-full h-full rounded-full bg-black flex items-center justify-center">
+                <div className="w-full h-full rounded-full bg-gray-900 flex items-center justify-center">
                   {/* Inner logo */}
                   <div className="bg-[#7ED321] text-black font-bold text-6xl w-24 h-24 rounded-full flex items-center justify-center font-mono">
                     P
