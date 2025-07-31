@@ -3,107 +3,12 @@
 import { Navigation } from "@/components/navigation"
 import { Button } from "@/components/ui/button"
 
-// Pixel art components for sponsors
-function PixelFlag() {
-  return (
-    <div className="w-12 h-12 bg-gray-900 relative">
-      <div className="grid grid-cols-6 grid-rows-6 gap-0 w-full h-full">
-        {Array.from({ length: 36 }).map((_, i) => {
-          const row = Math.floor(i / 6)
-          const col = i % 6
-          const isFlag =
-            (row === 1 && col >= 1 && col <= 4) || (row === 2 && col >= 1 && col <= 4) || (row >= 3 && col === 1)
-          return <div key={i} className={`w-full h-full ${isFlag ? "bg-orange-500" : "bg-transparent"}`} />
-        })}
-      </div>
-    </div>
-  )
-}
-
-function PixelUser() {
-  return (
-    <div className="w-12 h-12 bg-gray-900 relative">
-      <div className="grid grid-cols-6 grid-rows-6 gap-0 w-full h-full">
-        {Array.from({ length: 36 }).map((_, i) => {
-          const row = Math.floor(i / 6)
-          const col = i % 6
-          const isUser =
-            (row === 1 && col >= 2 && col <= 3) || // head
-            (row === 2 && col >= 1 && col <= 4) || // body
-            (row === 3 && col >= 1 && col <= 4) ||
-            (row === 4 && (col === 1 || col === 4)) // arms
-          return <div key={i} className={`w-full h-full ${isUser ? "bg-purple-600" : "bg-transparent"}`} />
-        })}
-      </div>
-    </div>
-  )
-}
-
-function PixelBaby() {
-  return (
-    <div className="w-12 h-12 bg-gray-900 relative">
-      <div className="grid grid-cols-6 grid-rows-6 gap-0 w-full h-full">
-        {Array.from({ length: 36 }).map((_, i) => {
-          const row = Math.floor(i / 6)
-          const col = i % 6
-          const isBaby =
-            (row === 1 && col >= 2 && col <= 3) || // head
-            (row === 2 && col >= 2 && col <= 3) || // body
-            (row === 3 && col >= 1 && col <= 4)
-          return <div key={i} className={`w-full h-full ${isBaby ? "bg-blue-500" : "bg-transparent"}`} />
-        })}
-      </div>
-    </div>
-  )
-}
-
-function PixelLightning() {
-  return (
-    <div className="w-12 h-12 bg-gray-900 relative">
-      <div className="grid grid-cols-6 grid-rows-6 gap-0 w-full h-full">
-        {Array.from({ length: 36 }).map((_, i) => {
-          const row = Math.floor(i / 6)
-          const col = i % 6
-          const isLightning =
-            (row === 0 && col === 2) ||
-            (row === 1 && col >= 1 && col <= 2) ||
-            (row === 2 && col >= 2 && col <= 3) ||
-            (row === 3 && col >= 3 && col <= 4) ||
-            (row === 4 && col === 4) ||
-            (row === 5 && col === 3)
-          return <div key={i} className={`w-full h-full ${isLightning ? "bg-yellow-500" : "bg-transparent"}`} />
-        })}
-      </div>
-    </div>
-  )
-}
-
-function PixelB() {
-  return (
-    <div className="w-12 h-12 bg-gray-900 relative">
-      <div className="grid grid-cols-6 grid-rows-6 gap-0 w-full h-full">
-        {Array.from({ length: 36 }).map((_, i) => {
-          const row = Math.floor(i / 6)
-          const col = i % 6
-          const isB =
-            col === 1 || // left line
-            (row === 1 && col >= 1 && col <= 4) || // top
-            (row === 3 && col >= 1 && col <= 4) || // middle
-            (row === 5 && col >= 1 && col <= 4) || // bottom
-            ((row === 2 || row === 4) && col === 4) // right sides
-          return <div key={i} className={`w-full h-full ${isB ? "bg-blue-600" : "bg-transparent"}`} />
-        })}
-      </div>
-    </div>
-  )
-}
-
 const sponsors = [
-  { name: "Micro3", component: <PixelFlag />, color: "bg-orange-500" },
-  { name: "DerpDEXcom", component: <PixelUser />, color: "bg-purple-600" },
-  { name: "ZkBaby", component: <PixelBaby />, color: "bg-blue-500" },
-  { name: "ZNS Connect", component: <PixelLightning />, color: "bg-yellow-500" },
-  { name: "More", component: <PixelB />, color: "bg-blue-600" },
+  { name: "Micro3", icon: "🏁", color: "bg-orange-500" },
+  { name: "DerpDEXcom", icon: "👤", color: "bg-purple-600" },
+  { name: "ZkBaby", icon: "👶", color: "bg-blue-500" },
+  { name: "ZNS Connect", icon: "⚡", color: "bg-yellow-500" },
+  { name: "More", icon: "B", color: "bg-blue-600" },
 ]
 
 const seasons = [
@@ -454,7 +359,11 @@ export default function TourPage() {
                   key={index}
                   className="bg-gray-900 border border-gray-700 rounded-lg p-4 hover:border-[#7ED321] transition-colors"
                 >
-                  <div className="mx-auto mb-2 flex justify-center">{sponsor.component}</div>
+                  <div
+                    className={`w-12 h-12 ${sponsor.color} rounded-lg flex items-center justify-center mx-auto mb-2`}
+                  >
+                    <div className="text-white font-bold font-mono">{sponsor.icon}</div>
+                  </div>
                   <div className="text-white text-sm font-mono">{sponsor.name}</div>
                 </div>
               ))}

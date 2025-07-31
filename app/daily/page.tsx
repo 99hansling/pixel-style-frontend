@@ -4,83 +4,6 @@ import { Navigation } from "@/components/navigation"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 
-// Pixel art components for rewards
-function PixelDiamond() {
-  return (
-    <div className="w-4 h-4 bg-transparent relative inline-block">
-      <div className="grid grid-cols-4 grid-rows-4 gap-0 w-full h-full">
-        {Array.from({ length: 16 }).map((_, i) => {
-          const row = Math.floor(i / 4)
-          const col = i % 4
-          const isDiamond =
-            (row === 0 && col >= 1 && col <= 2) ||
-            (row === 1 && col >= 0 && col <= 3) ||
-            (row === 2 && col >= 0 && col <= 3) ||
-            (row === 3 && col >= 1 && col <= 2)
-          return <div key={i} className={`w-full h-full ${isDiamond ? "bg-purple-400" : "bg-transparent"}`} />
-        })}
-      </div>
-    </div>
-  )
-}
-
-function PixelCoin() {
-  return (
-    <div className="w-4 h-4 bg-transparent relative inline-block">
-      <div className="grid grid-cols-4 grid-rows-4 gap-0 w-full h-full">
-        {Array.from({ length: 16 }).map((_, i) => {
-          const row = Math.floor(i / 4)
-          const col = i % 4
-          const isCoin =
-            (row === 0 && col >= 1 && col <= 2) ||
-            (row === 1 && (col === 0 || col === 3)) ||
-            (row === 2 && (col === 0 || col === 3)) ||
-            (row === 3 && col >= 1 && col <= 2)
-          return <div key={i} className={`w-full h-full ${isCoin ? "bg-[#7ED321]" : "bg-transparent"}`} />
-        })}
-      </div>
-    </div>
-  )
-}
-
-function PixelStar() {
-  return (
-    <div className="w-4 h-4 bg-transparent relative inline-block">
-      <div className="grid grid-cols-4 grid-rows-4 gap-0 w-full h-full">
-        {Array.from({ length: 16 }).map((_, i) => {
-          const row = Math.floor(i / 4)
-          const col = i % 4
-          const isStar =
-            (row === 0 && col === 1) ||
-            (row === 1 && col >= 0 && col <= 2) ||
-            (row === 2 && col >= 0 && col <= 2) ||
-            (row === 3 && col === 1)
-          return <div key={i} className={`w-full h-full ${isStar ? "bg-yellow-500" : "bg-transparent"}`} />
-        })}
-      </div>
-    </div>
-  )
-}
-
-function PixelChart() {
-  return (
-    <div className="w-4 h-4 bg-transparent relative inline-block">
-      <div className="grid grid-cols-4 grid-rows-4 gap-0 w-full h-full">
-        {Array.from({ length: 16 }).map((_, i) => {
-          const row = Math.floor(i / 4)
-          const col = i % 4
-          const isChart =
-            (row === 3 && col >= 0 && col <= 3) ||
-            (row === 2 && col === 0) ||
-            (row === 1 && col === 1) ||
-            (row === 0 && col === 2)
-          return <div key={i} className={`w-full h-full ${isChart ? "bg-gray-500" : "bg-transparent"}`} />
-        })}
-      </div>
-    </div>
-  )
-}
-
 const rewardTiers = [
   { name: "Sapphire", color: "bg-purple-600", icon: "💎" },
   { name: "3x Sapphire", color: "bg-purple-600", icon: "💎" },
@@ -159,7 +82,7 @@ export default function DailyPage() {
                   </div>
                   <h3 className="text-white font-mono text-lg mb-2">1 PUSD</h3>
                   <div className="text-gray-400 font-mono text-sm mb-4">
-                    <PixelDiamond /> 0 Sapphire
+                    <span className="text-purple-400">💎</span> 0 Sapphire
                   </div>
                   <Button className="bg-[#7ED321] text-black hover:bg-[#6BC91A] font-mono w-full">
                     Connect Wallet
@@ -172,7 +95,7 @@ export default function DailyPage() {
                   </div>
                   <h3 className="text-white font-mono text-lg mb-2">1 Gem Stone</h3>
                   <div className="text-gray-400 font-mono text-sm mb-4">
-                    <PixelDiamond /> 0 Sapphire
+                    <span className="text-purple-400">💎</span> 0 Sapphire
                   </div>
                   <Button className="bg-[#7ED321] text-black hover:bg-[#6BC91A] font-mono w-full">
                     Connect Wallet
@@ -199,7 +122,7 @@ export default function DailyPage() {
                   key={index}
                   className={`${reward.color} text-white px-6 py-3 rounded-lg font-mono text-sm flex items-center space-x-2`}
                 >
-                  {reward.name.includes("Sapphire") ? <PixelDiamond /> : <PixelCoin />}
+                  <span>{reward.icon}</span>
                   <span>{reward.name}</span>
                 </div>
               ))}
@@ -216,9 +139,7 @@ export default function DailyPage() {
               </div>
               <div className="p-12 text-center">
                 <div className="w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <div className="scale-4">
-                    <PixelChart />
-                  </div>
+                  <div className="text-gray-500 text-2xl">📊</div>
                 </div>
                 <div className="text-gray-400 font-mono">No data</div>
               </div>
